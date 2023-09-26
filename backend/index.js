@@ -1,13 +1,19 @@
 const express = require("express");
-const port = require("./config");
+const { port, mongoDbURL } = require("./config");
 const app = express();
+const { mongoose } = require("mongoose");
 
 app.get("/", (req, res) => {
     res.send("Hello world");
 })
-app.listen(port, (req, res) => {
-    console.log(`listening at ${port}`);
-})
 
 
+mongoose.connect(mongoDbURL).then(() => {
+    console.log("success");
+    app.listen(port, (req, res) => {
+        console.log(`listening at ${port}`);
+    })
+}).catch((err) => {
+    console.log(err);
+});
 
