@@ -5,11 +5,11 @@ const Footer = () => {
         <div className="container-fluid">
             <div className="row">
                 <div className="col-2">
-                    <a href="instagram.com" className="link-underline-light ">-<i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="link-underline-light ">-<i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
                     {/* Maybe Link could work check later */}
                 </div>
                 <div className="col-2">
-                    <a href="gmail.com">
+                    <a href="https://www.google.com/gmail/about/" target="_blank" rel="noreferrer">
                         -<i className="link-underline-light" class="fa-solid fa-envelope fa-lg"></i></a>
                 </div>
                 <div className="col-4">
