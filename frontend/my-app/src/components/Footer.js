@@ -1,14 +1,24 @@
 import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/dist/js/bootstrap.min.js"
-
+// import { Link } from "react-router-dom";
 const Footer = () => {
     return (<>
-        <div className="row">
-            <div className="col-4"></div>
+        <div className="container-fluid">
+            <div className="row">
+                <div className="col-2">
+                    <a href="instagram.com" className="link-underline-light ">-<i class="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
+                    {/* Maybe Link could work check later */}
+                </div>
+                <div className="col-2">
+                    <a href="gmail.com">
+                        -<i className="link-underline-light" class="fa-solid fa-envelope fa-lg"></i></a>
+                </div>
+                <div className="col-4">
+                    <i class="fa-solid fa-phone">+91  99623 21431</i>
 
-            <div className="col-8">
-                <h>&copy;</h>
+                </div>
+                <div className="col-4">
+                    <h5>&copy; All rights reserved</h5>
+                </div>
             </div>
         </div>
     </>);
