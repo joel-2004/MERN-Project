@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+
+const { colection } = require("./mongodb");
 app.get("/", (req, res) => {
     res.end("Home");
 })
