@@ -1,9 +1,9 @@
 const mongose = require("mongoose");
 
-mongose.connect("mongodb://localhost:27017/login").then(() => {
+mongose.connect("mongodb://0.0.0.0:27017/login").then(() => {
     console.log("Connected to db");
-}).catch(() => {
-    console.log("Connection failed to db");
+}).catch((e) => {
+    console.log("Connection failed to db " + e);
 })
 
 
