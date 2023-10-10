@@ -8,9 +8,11 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Home from "./components/Home";
+import { ToastContainer } from "react-toastify";
 function App() {
   return (
     <>
+      <ToastContainer></ToastContainer>
       <Router>
         <Navbar></Navbar>
         <Routes>

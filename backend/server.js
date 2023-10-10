@@ -10,6 +10,21 @@ app.use(cors());
 app.get("/", cors(), (req, res) => {
     res.end("Home");
 })
+
+app.post("/signup", async (re, res) => {
+    const form = req.body.form;
+    const data = {
+        name: form.name,
+        password: form.password,
+        password1: form.password1
+    };
+    console.log(data);
+    try {
+
+    } catch (error) {
+        console.log(error);
+    }
+})
 app.listen(5000, () => {
     console.log("listening at 5000");
 })

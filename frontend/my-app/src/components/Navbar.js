@@ -10,7 +10,7 @@ export const Navbar = () => {
             <Link to="/"><img className="card-img " src={require("../images/images.jpg")} alt="sorry"></img></Link>
           </div>
           <div className="col-1">
-            <i class="fa-solid fa-house"></i>
+            <i className="fa-solid fa-house"></i>
             <Link to="/">Home</Link>
           </div>
           <div className="col-3">
@@ -21,15 +21,15 @@ export const Navbar = () => {
           </div>
 
           <div className="col-1">
-            <i class="fa-solid fa-cart-shopping fa-lg"></i>
+            <i className="fa-solid fa-cart-shopping fa-lg"></i>
             <Link to="/cart">cart</Link>
           </div>
           <div className="col-1">
-            <i class="fa-solid fa-user fa-lg"></i>
+            <i className="fa-solid fa-user fa-lg"></i>
             <Link to="/login">Login</Link>
           </div>
           <div className="col-1">
-            <i class="fa-solid fa-user-plus"></i>
+            <i className="fa-solid fa-user-plus"></i>
             <Link to="/signup">Signup</Link>
           </div>
         </div>
