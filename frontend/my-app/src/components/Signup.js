@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
 const Signup = () => {
@@ -21,7 +21,10 @@ const Signup = () => {
                 console.log("password");
             }
             else {
-                await axios.post("http://127.0.0.1:3000/signup", { form });
+                console.log(form.password);
+                console.log(typeof (form.password2) + form.password2);
+                console.log(form.name);
+                await axios.post("http://localhost:5000/signup", { form });
             }
 
             console.log(form.password);

@@ -11,12 +11,13 @@ app.get("/", cors(), (req, res) => {
     res.end("Home");
 })
 
-app.post("/signup", async (re, res) => {
+app.post("/signup", async (req, res) => {
+    console.log("inside server.js");
     const form = req.body.form;
     const data = {
         name: form.name,
         password: form.password,
-        password1: form.password1
+        password1: form.password2
     };
     console.log(data);
     try {
