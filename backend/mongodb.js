@@ -12,11 +12,11 @@ const userSchema = new mongose.Schema({//Schema- format to store data
         type: String,
         required: true
     },
-    email: {
+    password: {
         type: String,
         required: true
     },
-    password: {
+    password1: {
         type: String,
         required: true
     }
