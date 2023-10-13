@@ -18,17 +18,27 @@ const Signup = () => {
             }
             else if (form.password !== form.password2) {
                 toast.error("both passwords must match");
-                console.log("password");
+                // console.log("password");
             }
             else {
-                console.log(form.password);
-                console.log(typeof (form.password2) + form.password2);
-                console.log(form.name);
-                await axios.post("http://localhost:5000/signup", { form });
+                //console.log(form.password);
+                //console.log(typeof (form.password2) + form.password2);
+                //console.log(form.name);
+                await axios.post("http://localhost:5000/signup", { form })
+                    .then(res => {
+
+                        if (res.data === "exist") {
+                            // console.log(res);
+                            toast.error("User aldready exists");
+                        }
+                        else if (res.data == "notexist") {
+                            toast.success("Registered");
+                        }
+                    })
             }
 
-            console.log(form.password);
-            console.log(typeof (form.password2) + form.password2);
+            // console.log(form.password);
+            //console.log(typeof (form.password2) + form.password2);
 
         } catch (error) {
             console.log(error);

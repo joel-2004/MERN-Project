@@ -30,4 +30,4 @@ const collection = {
 };
 //to export several collections
 
-module.exports = collection;
+module.exports = userCollection;
