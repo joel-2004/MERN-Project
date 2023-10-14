@@ -13,7 +13,6 @@ app.get("/", cors(), (req, res) => {
 })
 
 app.post("/signup", async (req, res) => {
-
     try {
         //console.log("inside server.js");
         const form = req.body.form;
@@ -36,6 +35,34 @@ app.post("/signup", async (req, res) => {
     } catch (error) {
         console.log(error);
 
+    }
+})
+
+app.post("/login", async (req, res) => {
+    const form = req.body.form;
+    const data = {
+        name: form.name,
+        password: form.password
+    }
+    //console.log(form.name);
+    console.log(data);
+    try {
+        const findUser = await userCollection.findOne({ name: data.name });
+
+        console.log(findUser);
+        if (findUser) {
+            if (findUser.password === data.password)
+                res.json("Login");
+            else
+                res.json("Incorrectpassword");
+
+        }
+
+        else {
+            res.json("nouser");
+        }
+    } catch (e) {
+        console.log(e);
     }
 })
 app.listen(5000, () => {
