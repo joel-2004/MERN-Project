@@ -12,9 +12,12 @@ const ToDo = () => {
         setInputvalue("");
         console.log(list);
     }
-    const handleDone = (e) => {
-        e.preventDefault();
-        console.log(e);
+    const handleDone = (id) => {
+        // e.preventDefault();
+        console.log(id);
+        //  console.log(id);
+        const newList = list.filter((p) => p.id !== id);
+        setList(newList);
     }
     return (
         <>
@@ -31,10 +34,13 @@ const ToDo = () => {
                             {list.map((p) => {
                                 return (
                                     <div key={p.id}>
-                                        <h4 >{p.text} <button type="submit" className="btn btn-danger" onClick={handleDone}>Done</button></h4>
+                                        <h4 >{p.text} <button type="submit" className="btn btn-success" onClick={() => handleDone(p.id)}>Done</button></h4>
                                     </div>
                                 )
                             })}
+                        </div>
+                        <div>
+                            <button type="reset" className="btn btn-danger" onClick={() => setList([])}>Reset</button>
                         </div>
                     </div>
                 </div>
