@@ -1,21 +1,16 @@
 import React, { useState } from "react";
-import axios from "axios";
+
 const ToDo = () => {
     const [inputValue, setInputvalue] = useState("");
     const [list, setList] = useState([]);
-    const handleSubmit = async (e) => {
-        try {
-            e.preventDefault();
-            console.log(inputValue);
-            // console.log(list);
-            const id = new Date().getTime();
-            setList([{ id: id, text: inputValue }]);
-            await axios.post("http://localhost:5000/todo", { list });
-            setInputvalue("");
-            console.log(list);
-        } catch (e) {
-            console.log(e);
-        }
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(inputValue);
+        // console.log(list);
+        const id = new Date().getTime();
+        setList([...list, { id: id, text: inputValue }]);
+        setInputvalue("");
+        console.log(list);
     }
     const handleDone = (id) => {
         // e.preventDefault();

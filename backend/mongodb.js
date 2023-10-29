@@ -21,13 +21,24 @@ const userSchema = new mongose.Schema({//Schema- format to store data
         required: true
     }
 })
+const toDoSchema = new mongose.Schema({
+    id: {
+        type: Number,
+        required: true
+    },
+    name: {
+        type: String,
+        required: true
+    }
+})
 
 
 const userCollection = mongose.model("user", userSchema);//a collection("user") inside the db that uses the schema("userSchema")
-
+const toDoCollection = mongose.model("todo", toDoSchema);
 const collection = {
-    userCollection
+    userCollection,
+    toDoCollection
 };
 //to export several collections
 
-module.exports = userCollection;
+module.exports = collection;

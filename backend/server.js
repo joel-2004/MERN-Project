@@ -3,7 +3,9 @@ const app = express();
 const cors = require("cors");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
-const userCollection = require("./mongodb");
+const collection = require("./mongodb");
+const userCollection = collection.userCollection;
+const toDoCollection = collection.toDoCollection;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
@@ -51,18 +53,39 @@ app.post("/login", async (req, res) => {
 
         console.log(findUser);
         if (findUser) {
-            if (findUser.password === data.password)
+            if (findUser.password === data.password) {
                 res.json("Login");
+            }
             else
                 res.json("Incorrectpassword");
-
         }
-
         else {
             res.json("nouser");
         }
     } catch (e) {
         console.log(e);
+    }
+})
+
+app.post("/todo", async (req, res) => {
+    try {
+        const data = req.body.list;
+        const toDo = {
+            id: data[0].id,
+            name: data[0].text
+        }
+        // console.log(data);
+        // console.log(toDo);
+        // console.log(toDo.id);
+        // console.log(toDo.name);
+
+
+        await toDoCollection.insertMany([toDo]);
+        console.log("inserted");
+
+
+    } catch (error) {
+        console.log(error);
     }
 })
 app.listen(5000, () => {

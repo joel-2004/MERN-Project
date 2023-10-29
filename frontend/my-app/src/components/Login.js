@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 const Login = () => {
@@ -13,11 +13,12 @@ const Login = () => {
             else {
                 await axios.post("http://localhost:5000/login", { form }).then(
                     res => {
-                        if (res.data == "nouser") {
+                        if (res.data === "nouser") {
                             toast.error("Wrong Username");
                         }
-                        if (res.data == "Login") {
+                        if (res.data === "Login") {
                             toast.success("Login successfull");
+
                         }
                         if (res.data === "Incorrectpassword") {
                             toast.error("Incorrect Password");
