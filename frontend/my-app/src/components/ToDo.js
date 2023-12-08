@@ -36,16 +36,21 @@ const ToDo = () => {
                             <button type="submit" className="btn btn-primary m-1" >Add</button>
                         </form>
                         <div>
-                            {list.map((p) => {
-                                return (
-                                    <div key={p.id}>
-                                        <h4 >{p.text} <button type="submit" className="btn btn-success" onClick={() => handleDone(p.id)}>Done</button></h4>
-                                    </div>
-                                )
-                            })}
+                            {
+                                list.length === 0 ? <h3>No record</h3>
+
+                                    : list.map((p) => {
+                                        return (
+                                            <div key={p.id}>
+                                                <h4 >{p.text} <button type="submit" className="btn btn-success" onClick={() => handleDone(p.id)}>Done</button></h4>
+                                            </div>
+                                        )
+                                    })}
                         </div>
                         <div>
-                            <button type="reset" className="btn btn-danger" onClick={() => setList([])}>Reset</button>
+                            {list.length === 0 ? <p></p> :
+                                <button type="reset" className="btn btn-danger" onClick={() => setList([])}>Reset</button>
+                            }
                         </div>
                     </div>
                 </div>

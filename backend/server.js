@@ -70,19 +70,17 @@ app.post("/login", async (req, res) => {
 app.post("/todo", async (req, res) => {
     try {
         const data = req.body.list;
-        const toDo = {
-            id: data[0].id,
-            name: data[0].text
-        }
-        // console.log(data);
+        // const toDo = {
+        //     id: data[0].id,
+        //     name: data[0].text
+        // }
+        console.log(data);
         // console.log(toDo);
         // console.log(toDo.id);
         // console.log(toDo.name);
 
-
-        await toDoCollection.insertMany([toDo]);
-        console.log("inserted");
-
+        // await toDoCollection.insertMany([toDo]);
+        // console.log("inserted");
 
     } catch (error) {
         console.log(error);
