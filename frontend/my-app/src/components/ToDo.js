@@ -3,7 +3,8 @@ import axios from "axios";
 const ToDo = () => {
     const [inputValue, setInputvalue] = useState("");
     const [list, setList] = useState([]);
-
+    const [isUpdate, setIsUpdate] = useState("");
+    const [updateValue, setUpdateValue] = useState("");
     useEffect(() => {
         const getItems = async () => {
             try {
@@ -43,6 +44,25 @@ const ToDo = () => {
         }
     }
 
+
+
+    const update = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.put(`http://localhost:5000/todo/update/${isUpdate}`, { text: updateValue });
+            const updateItemIndex = list.findIndex(text => text._id === isUpdate);
+            const updatedItem = { ...list[updateItemIndex], text: updateValue }; // Create a new object with updated text
+            const updatedList = [...list]; // Create a new array
+            console.log(updatedList);
+            updatedList[updateItemIndex] = updatedItem; // Replace the updated item in the array
+            setList(updatedList);
+            setIsUpdate("");
+            setUpdateValue("");
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     const deleteAll = async () => {
         try {
             console.log("hello");
@@ -52,6 +72,28 @@ const ToDo = () => {
             console.log(error);
         }
     }
+
+    const updateForm = () => {
+        return (<>
+            <div className="container-fluid ">
+                <div className="row"></div>
+                <form onSubmit={update} >
+
+
+                    <div className="col-2">
+                        <input type="text" onChange={(e) => setUpdateValue(e.target.value)} value={updateValue}></input>
+                        <div className="col-4">
+                            <button type="submit" class="btn">Update</button>
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+
+        </>);
+    }
+
     return (
         <>
             <div className="container-fluid ">
@@ -75,22 +117,26 @@ const ToDo = () => {
                                                     <button className="btn btn-success" onClick={() => deleteItem(p._id)}>Done</button>
                                                     <button className="btn btn-dark">Update</button>
                                                 </h4> */}
+                                                {isUpdate === p._id
+                                                    ? updateForm() :
 
-                                                <div className="container">
-                                                    <div className="row align-items-center">
-                                                        <div className="col-md-5">
-                                                            <h4>{p.text}</h4>
-                                                        </div>
-                                                        <div className="col-md-2 m-2 ">
-                                                            <button className="btn btn-success" onClick={() => deleteItem(p._id)}>
-                                                                Done
-                                                            </button>
-                                                        </div>
-                                                        <div className="col-md-2 m-2">
-                                                            <button className="btn btn-dark">Update</button>
+                                                    <div className="container">
+                                                        <div className="row align-items-center">
+                                                            <div className="col-md-5">
+                                                                <h4>{p.text}</h4>
+                                                            </div>
+                                                            <div className="col-md-2 m-2 ">
+                                                                <button className="btn btn-success" onClick={() => deleteItem(p._id)}>
+                                                                    Done
+                                                                </button>
+                                                            </div>
+                                                            <div className="col-md-2 m-2">
+                                                                <button className="btn btn-dark" onClick={() => setIsUpdate(p._id)}>Update</button>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
+
+                                                }
 
 
                                             </div>

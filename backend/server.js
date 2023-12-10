@@ -105,8 +105,7 @@ app.delete("/todo/delete/:id", async (req, res) => {
 app.put("/todo/update/:id", async (req, res) => {
     try {
         const updateItem = await toDoCollection.findByIdAndUpdate(req.params.id, { $set: req.body });
-        res.send(updateItem);
-        console.log("updated");
+
     } catch (error) {
         console.log(error);
     }
