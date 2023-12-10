@@ -2,8 +2,8 @@ import React from "react";
 // import { Link } from "react-router-dom";
 const Footer = () => {
     return (<>
-        <div className="container-fluid">
-            <div className="row">
+        <div className="container">
+            <div className="row m-3">
                 <div className="col-2">
                     <a href="https://www.instagram.com/" target="_blank" rel="noreferrer" className="link-underline-light ">-<i className="fa fa-instagram fa-lg" aria-hidden="true"></i></a>
                     {/* Maybe Link could work check later */}

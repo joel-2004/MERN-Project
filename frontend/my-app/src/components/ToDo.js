@@ -70,32 +70,35 @@ const ToDo = () => {
     const updateForm = () => {
         return (<>
             <div className="container-fluid ">
-                <div className="row"></div>
                 <form onSubmit={(e) => update(e)} >
-                    <div className="col-2">
-                        <input type="text" onChange={(e) => setUpdateValue(e.target.value)} value={updateValue}></input>
-                        <div className="col-4">
-                            <button type="submit" className="btn">Update</button>
-                        </div>
-                    </div>
-
-
+                    <table className="table-borderless ">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input type="text" onChange={(e) => setUpdateValue(e.target.value)} value={updateValue}></input>
+                                </td>
+                                <td>
+                                    <button type="submit" className="btn btn-secondary ">Update</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </form>
-            </div>
 
+            </div>
         </>);
     }
 
     return (
         <>
-            <div className="container-fluid ">
+            <div className="container-fluid bg-primary-subtle">
                 <div className="row">
                     <div className="col-4"></div>
                     <div className="col-6">
                         <form onSubmit={addItem}>
-                            <h4>ToDo</h4>
+
                             <input type="text" name="todo" id="todo" value={inputValue} onChange={(e) => setInputvalue(e.target.value)}></input>
-                            <button type="submit" className="btn btn-primary m-1" >Add</button>
+                            <button type="submit" className="btn btn-primary m-3" >Add</button>
                         </form>
                         <div>
                             {
@@ -114,7 +117,7 @@ const ToDo = () => {
 
                                                     <div className="container">
                                                         <div className="row align-items-center">
-                                                            <div className="col-md-5">
+                                                            <div className="col-md-5 m-2 ">
                                                                 <h4>{p.text}</h4>
                                                             </div>
                                                             <div className="col-md-2 m-2 ">
@@ -137,7 +140,7 @@ const ToDo = () => {
                         </div>
                         <div>
                             {list.length === 0 ? <p></p> :
-                                <button className="btn btn-danger" onClick={deleteAll}>Reset</button>
+                                <button className="btn btn-danger m-2" onClick={deleteAll}>Reset</button>
                             }
 
                         </div>
