@@ -70,11 +70,28 @@ const ToDo = () => {
                                     : list.map((p) => {
                                         return (
                                             <div key={p._id}>
-                                                <h4 >
+                                                {/* <h4 >
                                                     {p.text}
                                                     <button className="btn btn-success" onClick={() => deleteItem(p._id)}>Done</button>
                                                     <button className="btn btn-dark">Update</button>
-                                                </h4>
+                                                </h4> */}
+
+                                                <div className="container">
+                                                    <div className="row align-items-center">
+                                                        <div className="col-md-5">
+                                                            <h4>{p.text}</h4>
+                                                        </div>
+                                                        <div className="col-md-2 m-2 ">
+                                                            <button className="btn btn-success" onClick={() => deleteItem(p._id)}>
+                                                                Done
+                                                            </button>
+                                                        </div>
+                                                        <div className="col-md-2 m-2">
+                                                            <button className="btn btn-dark">Update</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
 
                                             </div>
                                         )
