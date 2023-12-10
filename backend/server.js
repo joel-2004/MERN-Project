@@ -67,25 +67,55 @@ app.post("/login", async (req, res) => {
     }
 })
 
-app.post("/todo", async (req, res) => {
+app.get("/todo", async (req, res) => {
     try {
-        const data = req.body.list;
-        // const toDo = {
-        //     id: data[0].id,
-        //     name: data[0].text
-        // }
-        console.log(data);
-        // console.log(toDo);
-        // console.log(toDo.id);
-        // console.log(toDo.name);
-
-        // await toDoCollection.insertMany([toDo]);
-        // console.log("inserted");
+        const todo = await toDoCollection.find({});
+        res.json(todo);
 
     } catch (error) {
         console.log(error);
     }
 })
+
+app.post("/save", async (req, res) => {
+    try {
+        const newItem = new toDoCollection({
+            text: req.body.inputValue
+        })
+        const saveItem = await newItem.save();
+        res.status(200).json(saveItem);
+        console.log(`${req.body.inputValue} inserted`)
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+app.delete("/todo/delete/:id", async (req, res) => {
+    try {
+        console.log(req.params.id);
+        const deleteItem = toDoCollection.findByIdAndDelete(req.params.id);
+        if (deleteItem) {
+            console.log(`Deleted item: ${deleteItem}`);
+        }
+
+    } catch (error) {
+        console.log(error);
+    }
+
+})
+
+app.put("/todo/update/:id", async (req, res) => {
+    try {
+        const updateItem = toDoCollection.findByIdAndUpdate(req.params.id, { $set: req.body });
+        res.send(updateItem);
+        console.log("updated");
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+
+
 app.listen(5000, () => {
     console.log("listening at 5000");
 })

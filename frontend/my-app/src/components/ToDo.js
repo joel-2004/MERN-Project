@@ -1,28 +1,50 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 const ToDo = () => {
     const [inputValue, setInputvalue] = useState("");
     const [list, setList] = useState([]);
-    const handleSubmit = async (e) => {
+
+    useEffect(() => {
+
+        const getItems = async () => {
+            try {
+                const res = await axios.get("http://localhost:5000/toDo")
+                setList(res.data);
+            }
+            catch (err) {
+                console.log(err);
+            }
+        }
+        getItems()
+    }, [])
+
+    const addItem = async (e) => {
         try {
             e.preventDefault();
             console.log(inputValue);
             // console.log(list);
-            const id = new Date().getTime();
-            setList([{ id: id, text: inputValue }]);
-            await axios.post("http://localhost:5000/todo", { list });
+
+
+            const res = await axios.post("http://localhost:5000/save", { inputValue: inputValue });
+            setList([...list, res.data]);
             setInputvalue("");
-            console.log(list);
+
         } catch (e) {
             console.log(e);
         }
     }
-    const handleDone = (id) => {
-        // e.preventDefault();
-        console.log(id);
-        //  console.log(id);
-        const newList = list.filter((p) => p.id !== id);
-        setList(newList);
+
+
+    const deleteItem = async (id) => {
+        try {
+            const res = await axios.delete(`http://localhost:5000/todo/delete/${id}`);
+            console.log(res);
+            const newList = list.filter((e) => e._id !== id);
+            setList(newList);
+            console.log(newList);
+        } catch (error) {
+
+        }
     }
     return (
         <>
@@ -30,7 +52,7 @@ const ToDo = () => {
                 <div className="row">
                     <div className="col-4"></div>
                     <div className="col-6">
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={addItem}>
                             <h4>ToDo</h4>
                             <input type="text" name="todo" id="todo" value={inputValue} onChange={(e) => setInputvalue(e.target.value)}></input>
                             <button type="submit" className="btn btn-primary m-1" >Add</button>
@@ -41,8 +63,13 @@ const ToDo = () => {
 
                                     : list.map((p) => {
                                         return (
-                                            <div key={p.id}>
-                                                <h4 >{p.text} <button type="submit" className="btn btn-success" onClick={() => handleDone(p.id)}>Done</button></h4>
+                                            <div key={p._id}>
+                                                <h4 >
+                                                    {p.text}
+                                                    <button className="btn btn-success" onClick={() => deleteItem(p._id)}>Done</button>
+                                                    <button className="btn btn-dark">Update</button>
+                                                </h4>
+
                                             </div>
                                         )
                                     })}
@@ -51,6 +78,7 @@ const ToDo = () => {
                             {list.length === 0 ? <p></p> :
                                 <button type="reset" className="btn btn-danger" onClick={() => setList([])}>Reset</button>
                             }
+
                         </div>
                     </div>
                 </div>

@@ -21,12 +21,11 @@ const userSchema = new mongose.Schema({//Schema- format to store data
         required: true
     }
 })
+
+
 const toDoSchema = new mongose.Schema({
-    id: {
-        type: Number,
-        required: true
-    },
-    name: {
+
+    text: {
         type: String,
         required: true
     }
