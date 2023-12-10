@@ -5,7 +5,6 @@ const ToDo = () => {
     const [list, setList] = useState([]);
 
     useEffect(() => {
-
         const getItems = async () => {
             try {
                 const res = await axios.get("http://localhost:5000/toDo")
@@ -16,16 +15,13 @@ const ToDo = () => {
             }
         }
         getItems()
-    }, [])
+    }, [list])
 
     const addItem = async (e) => {
         try {
             e.preventDefault();
-            console.log(inputValue);
-            // console.log(list);
-
-
             const res = await axios.post("http://localhost:5000/save", { inputValue: inputValue });
+            console.log(inputValue);
             setList([...list, res.data]);
             setInputvalue("");
 
@@ -44,6 +40,16 @@ const ToDo = () => {
             console.log(newList);
         } catch (error) {
 
+        }
+    }
+
+    const deleteAll = async () => {
+        try {
+            console.log("hello");
+            await axios.delete("http://localhost:5000/todo/deleteAll");
+            setList([]);
+        } catch (error) {
+            console.log(error);
         }
     }
     return (
@@ -76,7 +82,7 @@ const ToDo = () => {
                         </div>
                         <div>
                             {list.length === 0 ? <p></p> :
-                                <button type="reset" className="btn btn-danger" onClick={() => setList([])}>Reset</button>
+                                <button className="btn btn-danger" onClick={deleteAll}>Reset</button>
                             }
 
                         </div>

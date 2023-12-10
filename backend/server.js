@@ -93,20 +93,18 @@ app.post("/save", async (req, res) => {
 app.delete("/todo/delete/:id", async (req, res) => {
     try {
         console.log(req.params.id);
-        const deleteItem = toDoCollection.findByIdAndDelete(req.params.id);
-        if (deleteItem) {
-            console.log(`Deleted item: ${deleteItem}`);
-        }
-
+        const deleteItem = await toDoCollection.deleteOne({ "_id": req.params.id });
     } catch (error) {
         console.log(error);
     }
-
 })
+
+
+
 
 app.put("/todo/update/:id", async (req, res) => {
     try {
-        const updateItem = toDoCollection.findByIdAndUpdate(req.params.id, { $set: req.body });
+        const updateItem = await toDoCollection.findByIdAndUpdate(req.params.id, { $set: req.body });
         res.send(updateItem);
         console.log("updated");
     } catch (error) {
@@ -114,7 +112,13 @@ app.put("/todo/update/:id", async (req, res) => {
     }
 })
 
-
+app.delete("/todo/deleteAll", async (req, res) => {
+    try {
+        const deleteAll = await toDoCollection.deleteMany({});
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 app.listen(5000, () => {
     console.log("listening at 5000");
