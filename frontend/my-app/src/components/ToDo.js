@@ -46,16 +46,10 @@ const ToDo = () => {
 
 
 
-    const update = async (e) => {
+    const update = (e) => {
         e.preventDefault();
         try {
-            await axios.put(`http://localhost:5000/todo/update/${isUpdate}`, { text: updateValue });
-            const updateItemIndex = list.findIndex(text => text._id === isUpdate);
-            const updatedItem = { ...list[updateItemIndex], text: updateValue }; // Create a new object with updated text
-            const updatedList = [...list]; // Create a new array
-            console.log(updatedList);
-            updatedList[updateItemIndex] = updatedItem; // Replace the updated item in the array
-            setList(updatedList);
+            axios.put(`http://localhost:5000/todo/update/${isUpdate}`, { text: updateValue });
             setIsUpdate("");
             setUpdateValue("");
         } catch (error) {
@@ -65,7 +59,7 @@ const ToDo = () => {
 
     const deleteAll = async () => {
         try {
-            console.log("hello");
+
             await axios.delete("http://localhost:5000/todo/deleteAll");
             setList([]);
         } catch (error) {
@@ -77,13 +71,11 @@ const ToDo = () => {
         return (<>
             <div className="container-fluid ">
                 <div className="row"></div>
-                <form onSubmit={update} >
-
-
+                <form onSubmit={(e) => update(e)} >
                     <div className="col-2">
                         <input type="text" onChange={(e) => setUpdateValue(e.target.value)} value={updateValue}></input>
                         <div className="col-4">
-                            <button type="submit" class="btn">Update</button>
+                            <button type="submit" className="btn">Update</button>
                         </div>
                     </div>
 
