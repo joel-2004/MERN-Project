@@ -10,6 +10,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
+/* (Not part of todo List)
 app.get("/", cors(), (req, res) => {
     res.end("Home");
 })
@@ -65,7 +66,7 @@ app.post("/login", async (req, res) => {
     } catch (e) {
         console.log(e);
     }
-})
+}) */
 
 app.get("/todo", async (req, res) => {
     try {
