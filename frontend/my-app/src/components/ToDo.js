@@ -97,8 +97,13 @@ const ToDo = () => {
                     <div className="col-6">
                         <form onSubmit={addItem}>
 
-                            <input type="text" name="todo" id="todo" value={inputValue} onChange={(e) => setInputvalue(e.target.value)}></input>
+                            <input type="text" name="todo" id="todo" value={inputValue}
+                                onChange={(e) =>
+                                    setInputvalue(e.target.value)
+                                }
+                            ></input>
                             <button type="submit" className="btn btn-primary m-3" >Add</button>
+
                         </form>
                         <div>
                             {

@@ -6,7 +6,7 @@ import { Navbar } from "./components/Navbar";
 import Footer from "./components/Footer";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
+import ToDo1 from "./components/ToDo1"
 import ToDo from "./components/ToDo";
 import { ToastContainer } from "react-toastify";
 function App() {

@@ -11,8 +11,7 @@ require("dotenv").config();
 app.get("/todo", async (req, res) => {
     try {
         const todo = await toDoCollection.find({});
-        res.json(todo);
-
+        res.status(200).json(todo);
     } catch (error) {
         console.log(error);
     }
@@ -25,7 +24,7 @@ app.post("/save", async (req, res) => {
         })
         const saveItem = await newItem.save();
         res.status(200).json(saveItem);
-        console.log(`${req.body.inputValue} inserted`)
+        // console.log(`${req.body.inputValue} inserted`)
     } catch (error) {
         console.log(error);
     }

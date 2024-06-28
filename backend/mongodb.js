@@ -1,5 +1,6 @@
 const mongose = require("mongoose");
 require("dotenv").config();
+
 mongose.connect(process.env.MONGODB_URI).then(() => {
     console.log("Connected to db");
 }).catch((e) => {
@@ -7,7 +8,6 @@ mongose.connect(process.env.MONGODB_URI).then(() => {
 })
 
 const toDoSchema = new mongose.Schema({
-
     text: {
         type: String,
         required: true
@@ -16,6 +16,7 @@ const toDoSchema = new mongose.Schema({
 
 
 const toDoCollection = mongose.model("todo", toDoSchema);
+
 const collection = {
     toDoCollection
 };
